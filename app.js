@@ -38,8 +38,8 @@ app.use('/contact', contactRouter);
 app.use('/cart', cartRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/thanks', thanksRouter);
-app.use('/account,', accountRouter);
-app.use('/admin,', adminRouter);
+app.use('/account', accountRouter);
+app.use('/admin', adminRouter);
 app.use('/login', loginRouter);
 
 
