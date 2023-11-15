@@ -104,29 +104,43 @@ references order_product(id);
 
 INSERT INTO customer (customer_id, email, username, password, full_name, gender, address, phonenumber, dateofbirth, updateat)
 VALUES
-(1, "quocthai290103@gmail.com", "ThaiDang234", "123456789", "Dang Quoc Thai", 0, "Ho Chi Minh City", "0854916602", '2003-01-29', '2023-11-12'),
-(2, "dqthai21@clc.fitus.edu.vn", "ThaiDangQuoc2901", "290103", "Dang Quoc Thai", 0, "Ho Chi Minh City", "0854916602", '2003-01-29', '2023-11-12'),
+(1, "quocthai290103@gmail.com", "ThaiDang234", "123456789", "Dang Quoc Thai", 0, "Ho Chi Minh City", "0854916602", '2003-01-29', '2023-11-12');
+INSERT INTO customer (customer_id, email, username, password, full_name, gender, address, phonenumber, dateofbirth, updateat)
+VALUES
+(2, "dqthai21@clc.fitus.edu.vn", "ThaiDangQuoc2901", "290103", "Dang Quoc Thai", 0, "Ho Chi Minh City", "0854916602", '2003-01-29', '2023-11-12');
+INSERT INTO customer (customer_id, email, username, password, full_name, gender, address, phonenumber, dateofbirth, updateat)
+VALUES
 (3, "ctkien21@clc.fitus.edu.vn", "KienTrung365", "97531", "Cao Trung Kien", 0, "Ho Chi Minh City", "0854916602", '2003-01-29', '2023-11-12');
 
 INSERT INTO product (product_id, name, image, price, description, status, tags, updateat)
 VALUES
-(1, "Nordic Chair", "IMG9350.png", 30, "Nice chair made of the best material", "available", "european, wool, comfy", '2023-11-12'),
-(2, "English Chair", "IMG3496.png", 20, "Made of magohany wood, best quality", "available", "european, wooden, cool, tall", '2023-11-12'),
+(1, "Nordic Chair", "IMG9350.png", 30, "Nice chair made of the best material", "available", "european, wool, comfy", '2023-11-12');
+INSERT INTO product (product_id, name, image, price, description, status, tags, updateat)
+VALUES
+(2, "English Chair", "IMG3496.png", 20, "Made of magohany wood, best quality", "available", "european, wooden, cool, tall", '2023-11-12');
+INSERT INTO product (product_id, name, image, price, description, status, tags, updateat)
+VALUES
 (3, "American Chair", "IMG3951.png", 25, "Metallic chair, fashionable and easy to move around", "out of order",'metallic, american, stylish', '2023-11-12');
 
 INSERT INTO order_entity 
 VALUES
-(1, 3, 100, '23 Binh Thanh Binh Tan',  10, 52, 5, 'shipped', '2023-11-12', '2023-11-20'),
+(1, 3, 100, '23 Binh Thanh Binh Tan',  10, 52, 5, 'shipped', '2023-11-12', '2023-11-20');
+INSERT INTO order_entity 
+VALUES
 (2, 1, 150, '23 Tan Phoi',  30, 67, 10, 'shipped', '2023-11-09', '2023-11-23');
 
 INSERT INTO order_product
 VALUES
-(1, 2, 4, 80, 'shipped', '2023-11-12'),
+(1, 2, 4, 80, 'shipped', '2023-11-12');
+INSERT INTO order_product
+VALUES
 (2, 2, 3, 60, 'shipped', '2023-11-12');
 
 INSERT INTO order_list
 VALUES
-(1, 2),
+(1, 2);
+INSERT INTO order_list
+VALUES
 (2, 1);
 
 INSERT INTO admin_account
