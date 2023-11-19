@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --inspect ./bin/www"
+    "start": "nodemon --inspect ./bin/www",
+    "//first_comment": "Change to node ./bin/www when run in Glitch"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
