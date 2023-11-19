@@ -1,12 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const re=require('../../controller/register')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('register/index', { title: 'Express2', subTitle: '21KTPM' });
-});
+router.get('/',re.index1);
+router.post('/', re.register);
 
-router.get('/:id', function(req, res, next) {
-  res.render('register/index');
-});
 module.exports = router;
