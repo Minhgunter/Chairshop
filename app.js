@@ -4,10 +4,17 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose=require('mongoose');
+const session=require('express-session');
+const passport=require('passport');
+const flash=require('connect-flash');
 
-mongoose.connect('mongodb://0.0.0.0:27017/website', {
-  useNewUrlParser: true
+require('./config/passport')(passport);
+
+const db=mongoose.connect('mongodb://0.0.0.0:27017/website', {
+  useNewUrlParser: true,
 });
+
+const User=require('./models/user_model');
 
 const homeRouter = require('./components/home');
 const shopRouter = require('./components/shop');
@@ -23,6 +30,7 @@ const adminRouter = require('./components/admin');
 const loginRouter = require('./components/login');
 const registerRouter= require('./components/register');
 const regnotifRouter= require('./components/reg_notif');
+const welcomeRouter= require('./components/welcome');
 
 const app = express();
 
@@ -36,7 +44,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
+app.use(flash());
+
+app.use((req, res, next)=>{
+  res.locals.message=req.flash('message');
+  next();
+});
 
 
 app.use('/', homeRouter);
@@ -53,6 +74,8 @@ app.use('/admin', adminRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/reg_notif', regnotifRouter);
+app.use('/welcome', welcomeRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

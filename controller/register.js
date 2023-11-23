@@ -1,40 +1,63 @@
-const user=require('../models/login_model');
+const User=require('../models/user_model');
 const bcrypt = require("bcryptjs");
 
+
 module.exports.index1=function(req, res, next) {
-        res.render('register/index', { title: 'Express2', subTitle: '21KTPM' });
+        const {email, username, password, password2}=req.body;
+        res.render('register/index', { title: 'Express2', subTitle: '21KTPM', email: email, username: username, password: password });
 };
 
 module.exports.register=async(req, res)=>{
-        const {username, email, password}=req.body;
+        
+        let errors=[];
 
-        if (!email || typeof email!=='string'){
-                return res.render('register/index', {message: 'Invalid Email'});
+        if (!email||!username||!password||!password2){
+                req.flash('message', 'Please fill all the empty area!')
+                return res.redirect('/register');
         }
 
-        if (!username || typeof username!=='string'){
-                return res.render('register/index', {message: 'Invalid Username'});
+        if (password!==password2){
+                req.flash('message', 'Passwords do not match!')
+                return res.redirect('/register');
         }
 
-        if (!password || typeof password!=='string'){
-                return res.render('register/index', {message: 'Invalid Password'}); 
+        if (password.length<6){
+                req.flash('message', "Password's length must be 6 or more!")
+                return res.redirect('/register');
         }
 
-        if (password.length<5){
-                return res.render('register/index', {message: 'Password is too short!'});
-        }
-
-        const hashedPassword=await bcrypt.hash(password, 10);
-
-        try{
-                const response=await user.create({email: email, username: username, password: hashedPassword});
-                console.log('User created successfully: ', response);
-                return res.redirect('/reg_notif');
-        }
-
-        catch(error){
-                if (error.code===11000){
-                        return res.render('register/index', {message: 'This account already exists!'})
+        User.findOne({email: email}).then(user=>{
+                if (user){
+                        req.flash('message', "This Email is already used!")
+                        return res.redirect('/register');
                 }
-        }
+        })
+
+        User.findOne({username: username}).then(user=>{
+                if (user){
+                        req.flash('message', "This Username is already used!")
+                        return res.redirect('/register');
+                }
+        })
+
+        const newUser=new User({
+                email: email,
+                username: username,
+                password: password
+        });
+
+        bcrypt.genSalt(10, (err, salt)=>{
+                bcrypt.hash(newUser.password, salt, (err, hash)=>{
+                        if (err){
+                                req.flash('message', "Failed to encrypt!")
+                                return res.redirect('/register');
+                        }
+
+                        newUser.password=hash;
+
+                        newUser.save().then(user=>{
+                                res.redirect('/reg_notif');
+                        }).catch(err=>console.log(err));
+                })
+        })
 }

@@ -1,27 +1,50 @@
+<div class="hero">
+				<div class="container">
+					<div class="row justify-content-between">
+						<div class="col-lg-5">
+							<div class="intro-excerpt">
+								<h1>Register</h1>
+							</div>
+						</div>
+						<div class="col-lg-7">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
 <div class="container mt-4 d-flex justify-content-center">
     <div class="card" style="width: 18rem;">            
         <div class="card-header">Register Form</div>    
         <div class="card-body">
             <form action="register" method="POST">
                 <div class="mb-3">
-                    <label for="name-reg" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="name-reg" name="username">                        
+                    <label for="name-reg" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email-reg" name="email" value={{email}}>                        
                 </div>
                 <div class="mb-3">
-                    <label for="email-reg" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email-reg" name="email">                        
+                    <label for="name-reg" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="name-reg" name="username" value={{username}}>                        
                 </div>
                 <div class="mb-3">
                     <label for="password-reg" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password-reg" name="password">
+                    <input type="password" class="form-control" id="password-reg" name="password" value={{password}}>
+                </div>
+                <div class="mb-3">
+                    <label for="password-reg" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="password-con" name="password2" value={{password2}}>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                <div>
+                    Already have an account? 
+                    <a href="/login">Login here</a>
+                </div>
             </form>
         </div>
 
         {{#if message}}
-            <h4 class="alert alert-info mt-4">{{message}}</h4>
+            <h4 class="alert alert-danger mt-4">{{message}}</h4>
         {{/if}}
     </div>
 </div>
