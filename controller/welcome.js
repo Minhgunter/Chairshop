@@ -1,3 +1,8 @@
 module.exports.index=function(req, res, next) {
-    res.render('welcome/index', { title: 'Express2', subTitle: '21KTPM', username: req.user.username});
+    var username=req.params.username;
+    if (username!==req.user.username){
+        return res.render('error', {message: 'This URL is invalid!'});
+    }
+
+    return res.render('welcome', {username: req.user.username});
 };

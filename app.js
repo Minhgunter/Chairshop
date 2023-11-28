@@ -17,6 +17,9 @@ const db=mongoose.connect('mongodb://0.0.0.0:27017/website', {
 const User=require('./models/user_model');
 
 const homeRouter = require('./components/home');
+const loginRouter = require('./components/login');
+const logoutRouter = require('./components/logout');
+const registerRouter= require('./components/register');
 const shopRouter = require('./components/shop');
 const aboutRouter = require('./components/about');
 const servicesRouter = require('./components/services');
@@ -27,8 +30,6 @@ const checkoutRouter = require('./components/checkout');
 const thanksRouter = require('./components/thanks');
 const accountRouter = require('./components/account');
 const adminRouter = require('./components/admin');
-const loginRouter = require('./components/login');
-const registerRouter= require('./components/register');
 const regnotifRouter= require('./components/reg_notif');
 const welcomeRouter= require('./components/welcome');
 
@@ -56,11 +57,15 @@ app.use(flash());
 
 app.use((req, res, next)=>{
   res.locals.message=req.flash('message');
+  res.locals.error=req.flash('error');
   next();
 });
 
 
 app.use('/', homeRouter);
+app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
+app.use('/register', registerRouter);
 app.use('/shop', shopRouter);
 app.use('/about', aboutRouter);
 app.use('/services', servicesRouter);

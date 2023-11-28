@@ -11,7 +11,7 @@ const user=new schema(
     address: {type: String, default: ''},
     contact: {type: String, default: ''},
     phone: {type: String, default: ''},
-    dateofborth: {type: Date},
+    dateofbirth: {type: String, default: ''},
     gender: {type: String, default: 'Male'}
   }, {collection: 'user'})
 

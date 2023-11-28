@@ -19,10 +19,10 @@
 			<div class="card" style="width: 18rem;">            
 				<div class="card-header">Login</div>    
 				<div class="card-body">
-					<form action="login" method="POST">
+					<form method="POST">
 						
 						<div class="mb-3">
-							<label for="email-reg" class="form-label">Username</label>
+							<label for="username-reg" class="form-label">Username</label>
 							<input type="text" class="form-control" id="username-reg" name="username">                        
 						</div>
 						<div class="mb-3">
@@ -36,13 +36,17 @@
                     		<a href="/register">Register here</a>
                 		</div>
 						<div>
-							<a href="/forgot_password">Forgot password?</a>
+							<a href="/login/forgot_password">Forgot password?</a>
 						</div>
 					</form>
 				</div>
 
 				{{#if message}}
-					<h4 class="alert alert-danger mt-4">{{message}}</h4>
+					<h4 class="alert alert-info mt-4">{{message}}</h4>
+				{{/if}}
+
+				{{#if error}}
+					<h4 class="alert alert-danger mt-4">{{error}}</h4>
 				{{/if}}
 			</div>
 		</div>
