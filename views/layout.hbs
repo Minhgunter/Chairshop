@@ -38,15 +38,41 @@
 
         <div class="collapse navbar-collapse" id="navbarsFurni">
             <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li><a class="nav-link" href="/shop">Shop</a></li>
-                <li><a class="nav-link" href="/about">About us</a></li>
-                <li><a class="nav-link" href="/services">Services</a></li>
-                <li><a class="nav-link" href="/blog">Blog</a></li>
-                <li><a class="nav-link" href="/contact">Contact us</a></li>
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/shop">Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">About us</a></li>
+                <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact">Contact us</a></li>
             </ul>
+
+            <script type="text/javascript">
+                const current=window.location.pathname;
+                const menuItem=document.querySelectorAll('li');
+                if (current==="/"){
+                    menuItem[0].className="nav-item active"
+                }
+
+                if (current==="/shop"){
+                    menuItem[1].className="nav-item active"
+                }
+
+                if (current==="/about"){
+                    menuItem[2].className="nav-item active"
+                }
+
+                if (current==="/services"){
+                    menuItem[3].className="nav-item active"
+                }
+
+                if (current==="/blog"){
+                    menuItem[4].className="nav-item active"
+                }
+
+                if (current==="/contact"){
+                    menuItem[5].className="nav-item active"
+                }
+            </script>
 
             <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                 <li><a class="nav-link" href="/account/{{username}}"><img src="/images/user.svg"></a></li>

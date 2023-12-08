@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const re=require('../../controller/productController');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    return res.render('home/index', { title: 'Express2', subTitle: '21KTPM' });
-});
+router.get('/', re.home);
 
 module.exports = router;

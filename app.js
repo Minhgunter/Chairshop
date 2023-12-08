@@ -3,17 +3,16 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mongoose=require('mongoose');
 const session=require('express-session');
 const passport=require('passport');
 const flash=require('connect-flash');
 
+const exbs=require('express-handlebars');
+
+
 require('./config/passport')(passport);
 
-const db=mongoose.connect('mongodb://0.0.0.0:27017/website', {
-  useNewUrlParser: true,
-});
-
+const db=require('./config/database');
 const User=require('./models/user_model');
 
 const homeRouter = require('./components/home');
@@ -37,6 +36,7 @@ const app = express();
 
 
 // view engine setup 
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 

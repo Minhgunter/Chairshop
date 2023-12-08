@@ -1,4 +1,5 @@
 const User=require('../models/user_model');
+const Cart=require('../models/cart_model')
 const bcrypt = require('bcryptjs');
 const passport=require('passport');
 
@@ -30,15 +31,14 @@ module.exports.register=async(req, res)=>{
                         req.flash('message', "This Email is already used!")
                         return res.redirect('/register');
                 }
-        })
-
+        
+        });
         User.findOne({username: username}).then(user=>{
                 if (user){
                         req.flash('message', "This Username is already used!")
                         return res.redirect('/register');
                 }
         })
-
         const newUser=new User({
                 email: email,
                 username: username,
@@ -55,7 +55,11 @@ module.exports.register=async(req, res)=>{
                         newUser.password=hash;
 
                         newUser.save().then(user=>{
-                                res.redirect('/reg_notif');
+                                const newCart=new Cart({
+                                        customer: newUser._id
+                                });
+                                newCart.save();
+                                return res.redirect('/reg_notif');
                         }).catch(err=>console.log(err));
                 })
         })
