@@ -6,9 +6,10 @@ const logger = require('morgan');
 const session=require('express-session');
 const passport=require('passport');
 const flash=require('connect-flash');
+const Handlebars=require('handlebars');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 
 const exbs=require('express-handlebars');
-
 
 require('./config/passport')(passport);
 
@@ -34,10 +35,18 @@ const welcomeRouter= require('./components/welcome');
 
 const app = express();
 
+const hbs=exbs.create({
+  extname: 'hbs',
+  layoutsDir: __dirname+'/views',
+  defaultLayout: 'layout',
+  helpers: require('./config/handlebars-helpers'),
+  handlebars: allowInsecurePrototypeAccess(Handlebars)
+})
 
 // view engine setup 
 
 app.set('views', path.join(__dirname, 'views'));
+app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
@@ -51,6 +60,7 @@ app.use(session({
   saveUninitialized: true
 }));
 app.use(passport.initialize());
+
 app.use(passport.session());
 
 app.use(flash());

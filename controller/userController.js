@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport=require('passport');
 
 module.exports.index_register=function(req, res, next) {
-        const {email, username, password, password2}=req.body;
+        const {email, username, password}=req.body;
         res.render('register/index', { title: 'Express2', subTitle: '21KTPM', email: email, username: username, password: password });
 };
 

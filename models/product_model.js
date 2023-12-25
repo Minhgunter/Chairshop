@@ -11,7 +11,8 @@ const product=new schema(
         tags: [{type: schema.Types.ObjectId, ref: 'tags'}],
         image: {type: String, required: true},
         updateat: {type: Date, default: Date.now},
-        slug: String
+        slug: String,
+        company: {type: schema.Types.ObjectId, ref: 'company'}
     }, {collection: 'products'}
 )
 

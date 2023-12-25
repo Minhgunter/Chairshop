@@ -6,7 +6,9 @@ const {ensureAuthenticated}=require('../../config/auth')
 /* GET home page. */
 router.get('/', re.shop);
 
-router.get('/tags/:tag', re.catalog);
+router.get('/search', re.search);
+
+router.get('/shop/search', re.search);
 
 router.get('/:slug', re.details)
 

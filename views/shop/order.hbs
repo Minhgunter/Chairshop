@@ -32,19 +32,23 @@
                         <tbody>
                             <tr>
                                 <td class="product-name">
-                                    <input name="product_name" class="h5 text-black" disabled value="{{product_name}}"></h2>
+                                    <input name="product_name" class="h5 text-black" value="{{product_name}}">
                                 </td>
                                 <td>${{product_price}}</td>
                                 <td>
-                                    <input name="quantity" type="text" class="form-control text-center quantity-amount" value="1" placeholder="" width="50px" aria-label="Example text with button addon" aria-describedby="button-addon1" required>
+                                    <input name="quantity" type="number" class="form-control text-center quantity-amount" value="1" placeholder="" width="50px" aria-label="Example text with button addon" aria-describedby="button-addon1" required>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <button type="submit" class="btn btn-primary mb-2 d-flex justify-content-center">Add into cart</button>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary mb-2">Add into cart</button>
+                </div>
             </form>
-
+            {{#if message}}
+                <h4 class="alert alert-danger mt-4">{{message}}</h4>
+            {{/if}}
         </div>
     </div>
 </div>

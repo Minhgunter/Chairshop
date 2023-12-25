@@ -19,14 +19,55 @@
 
 <div class="untree_co-section product-section before-footer-section">
     <div class="container">
-        <div class="row mb-4">
-            <h3 class="d-flex justify-content-center">Choose a category</h3>
-            <div class="d-flex justify-content-center">
-                {{#each tags}}
-                    <a name="tag" href="/shop/tags/{{tag}}" class="btn btn-light btn-outline-primary">{{tag}}</a>
-                {{/each}}
+        
+        <form action="/shop/search" method="get">
+            <div class="row mb-4">
+                <h3 class="d-flex justify-content-center">Search by name</h3>
+                <div class="d-flex justify-content-center">
+                    <input name="product", type="text">
+                </div>
             </div>
-        </div>
+
+            <div class="row mb-4">
+                <h3 class="d-flex justify-content-center">Choose tags</h3>
+                <div class="d-flex justify-content-center">
+                    {{#if tag_list}}
+                    {{#each tags}}
+                    
+                    <div class="form-check me-5 checkbox-lg">
+                        <h3><input class="form-check-input" name="tag" checked {{#ifIn tag tag}}checked{{/ifIn}}type="checkbox" value="{{tag}}">{{tag}}</j3>
+                    </div>
+                    {{/each}}
+                    {{else}}
+                    {{#each tags}}
+                    
+                    <div class="form-check me-5 checkbox-lg">
+                        <h3><input class="form-check-input" name="tag" type="checkbox" value="{{tag}}">{{tag}}</j3>
+                    </div>
+                    {{/each}}
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="row mb-4 d-flex justify-content-center">
+                <h3 class="d-flex justify-content-center">Choose a Company</h3>
+                <select name="company" class="d-flex justify-content-center" style="width: 200px; margin: 10px;" id="company">
+                        <option value="">Choose one</option>
+                        {{#select selected_company}}
+                            {{#each company}}
+                                <option value="{{company}}">{{company}}</option>
+                            {{/each}}
+                        {{/select}}
+                </select>
+            </div>
+
+            <div class="row mb-4">
+                <div class="d-flex justify-content-center">
+                    <button type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
         <div class="row">
             {{#each products}}
                 <div class="col-12 col-md-4 col-lg-3 mb-5">

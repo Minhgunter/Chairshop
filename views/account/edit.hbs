@@ -26,20 +26,12 @@
                 <div class="mb-3">
                     <label for="gender" class="form-label">Gender</label>
                     <select name="gender" id="gender">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
+                        {{#select gender}}
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        {{/select}}
                     </select>
-
-                    <script>
-                        var gender=document.getElementById('gender');
-                        for (var i, j=0; i=gender.option[j]; j++){
-                            if (i.value=={{gender}}){
-                                gender.selectedIndex=i;
-                                break;
-                            }
-                        }
-                    </script>
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">Edit</button>
                 <a href="/account/{{username}}" class="btn btn-sm btn-outline-black">Cancel</a>
