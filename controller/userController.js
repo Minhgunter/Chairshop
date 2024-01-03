@@ -56,7 +56,7 @@ module.exports.register=async(req, res)=>{
 
                         newUser.save().then(user=>{
                                 const newCart=new Cart({
-                                        customer: newUser._id
+                                        customer: newUser.username
                                 });
                                 newCart.save();
                                 return res.redirect('/reg_notif');
@@ -87,7 +87,9 @@ module.exports.index_profile=function(req, res, next) {
 
         User.findOne({username: req.user.username}).then(user=>{
                 const email=user.email;
-                const full_name=user.full_name;
+                const first_name=user.first_name;
+                const last_name=user.last_name;
+                const country=user.country;
                 const address=user.address;
                 const contact=user.contact;
                 const phone=user.phone;
@@ -95,7 +97,7 @@ module.exports.index_profile=function(req, res, next) {
                 const gender=user.gender;
 
                 return res.render('account/index', { title: 'Express2', subTitle: '21KTPM', 
-                username: req.user.username, email: email, full_name: full_name, address: address, contact: contact, phone: phone, dateofbirth: dateofbirth, gender: gender});
+                username: req.user.username, email: email, first_name: first_name, last_name: last_name, country: country, address: address, contact: contact, phone: phone, dateofbirth: dateofbirth, gender: gender});
         })
 }
 
@@ -110,7 +112,9 @@ module.exports.index_edit=function(req, res, next) {
         }
 
         User.findOne({username: req.user.username}).then(user=>{;
-                const full_name=user.full_name;
+                const first_name=user.first_name;
+                const last_name=user.last_name;
+                const country=user.country;
                 const address=user.address;
                 const contact=user.contact;
                 const phone=user.phone;
@@ -118,17 +122,17 @@ module.exports.index_edit=function(req, res, next) {
                 const gender=user.gender;
 
                 return res.render('account/edit', { title: 'Express2', subTitle: '21KTPM', 
-                username: req.user.username, full_name: full_name, address: address, contact: contact, phone: phone, dateofbirth: dateofbirth, gender: gender});
+                username: req.user.username, first_name: first_name, last_name: last_name, country: country, address: address, contact: contact, phone: phone, dateofbirth: dateofbirth, gender: gender});
         })
 }
 
 module.exports.edit_profile=(req, res, next)=>{
-        const {full_name, address, contact, phone, dateofbirth, gender}=req.body;
+        const {first_name, last_name, country, address, contact, phone, dateofbirth, gender}=req.body;
 
         const username=req.user.username;
         const filter={username: username};
 
-        User.findOneAndUpdate(filter, {full_name: full_name, address: address, contact: contact, phone: phone,  dateofbirth: dateofbirth, gender: gender}, {  useFindAndModify: false }).then(document=>{
+        User.findOneAndUpdate(filter, {first_name: first_name, last_name: last_name, country: country, address: address, contact: contact, phone: phone,  dateofbirth: dateofbirth, gender: gender}, {  useFindAndModify: false }).then(document=>{
                 if (!document){
                         req.flash('Cannot update profile!')
                         return res.redirect('/account/'+req.user.username+'/edit');

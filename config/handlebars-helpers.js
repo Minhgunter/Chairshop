@@ -5,11 +5,10 @@ module.exports={
             '$& selected="selected"');
     },
 
-    ifIn: function(_id, collection, options) {
-       if (collection.indexOf(_id)>-1){
-        return options.fn(this);
-       }
-
-       return options.inverse(this);
+    ifIn: function( value, array, options ){
+        if (array.indexOf(value) > -1) {
+            return options.fn(this);
+        }
+        return options.inverse(this);
     }
 }

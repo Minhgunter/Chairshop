@@ -23,28 +23,23 @@
             <div class="mb-3">
                 <h2 class="mt-2 d-flex justify-content-center">{{product_name}}<h2>
             </div>
-            <div class="mb-3">
+            <div class="mb-3" >
                 <img src="/images/{{image}}" width="350" height="350">
             </div>
-            <div class="mb-3">
-                <h3 class="d-flex justify-content-center">Price</h3>
-                <div class="mt-2 d-flex justify-content-center">${{product_price}}</div>
+            <div class="mb-3" style="font-size: 24px">
+                <mark><strong>Price: </strong></mark>${{product_price}}
             </div>
-           <div class="mb-3">
-                <h3 class="d-flex justify-content-center">Description</h3>
-                <div class="mt-2 d-flex justify-content-center">{{description}}</div>
+            <div class="mb-3" style="font-size: 24px">
+                <mark><strong>Description: </strong></mark>{{description}}
             </div>
-            <div class="mb-3">
-                <h3 class="d-flex justify-content-center">Status</h3>
-                <div class="mt-2 d-flex justify-content-center">{{status}}</div>
+            <div class="mb-3" style="font-size: 24px">
+                <mark><strong>Stock: </strong></mark>{{stock}}
             </div>
-            <div class="mb-3">
-                <h3 class="d-flex justify-content-center">Tags</h3>
-                <div class="mt-2 text-decoration-underline d-flex justify-content-center">
+            <div class="mb-3" style="font-size: 24px">
+                 <mark><strong>Tags: </strong></mark>
                     {{#each tags}}
-                        {{tag}}
+                        <ins>{{this}} </ins>
                     {{/each}}
-                </div>
             </div>
 
             <a href="/shop/{{slug}}/order" class="btn btn-sm btn-outline-black d-flex justify-content-center">Order Now!</a>

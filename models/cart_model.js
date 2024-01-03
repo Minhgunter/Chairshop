@@ -4,10 +4,11 @@ const schema=mongoose.Schema;
 
 const cart=new schema(
     {
-        customer: {type: schema.Types.ObjectId, ref: "user"},
-        products: [{product_info: {type: schema.Types.ObjectId, ref: "products"}, quantity: Number, ordered: {type: Date, default: Date.now}}],
-        discount: Number,
-        total_price: Number
+        customer: {type: String},
+        products: [{product_info: {type: schema.Types.ObjectId, ref: "products"}, quantity: Number, total: Number, ordered: {type: Date, default: Date.now}}],
+        coupon: {type: schema.Types.ObjectId, ref: "coupon"},
+        sub_total: {type: Number, default: 0},
+        total_price: {type: Number, default: 0}
     }, {collection: 'cart'}
 )
 

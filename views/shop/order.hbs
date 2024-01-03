@@ -19,7 +19,6 @@
 <div class="untree_co-section before-footer-section">
     <div class="container">
         <div class="row mb-5">
-            <form class="col-md-12" method="post">
                 <div class="site-blocks-table">
                     <table class="table">
                         <thead>
@@ -30,25 +29,37 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <form class="col-md-12" method="post">
                             <tr>
                                 <td class="product-name">
-                                    <input name="product_name" class="h5 text-black" value="{{product_name}}">
+                                    <input name="product_name" class="h5 text-black" value="{{product_name}}" readonly>
                                 </td>
                                 <td>${{product_price}}</td>
                                 <td>
-                                    <input name="quantity" type="number" class="form-control text-center quantity-amount" value="1" placeholder="" width="50px" aria-label="Example text with button addon" aria-describedby="button-addon1" required>
+                                    <div class="number-input">
+                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" type="button" id="edit" class="minus"></button>
+                                        <input class="quantity" min=0 name="quantity" value=1 type="number">
+                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" type="button" id="edit" class="plus"></button>
+                                    </div>
+                                    <script>
+                                        $(function () {
+                                            $("#edit").click(function (e) {
+                                                e.preventDefault();
+                                            });
+                                        });
+                                    </script>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-primary mb-2">Add into cart</button>
+                                    </div>
                                 </td>
                             </tr>
+                            </form>
                         </tbody>
                     </table>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary mb-2">Add into cart</button>
-                </div>
-            </form>
-            {{#if message}}
-                <h4 class="alert alert-danger mt-4">{{message}}</h4>
-            {{/if}}
+                
         </div>
     </div>
 </div>

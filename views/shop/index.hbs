@@ -24,7 +24,7 @@
             <div class="row mb-4">
                 <h3 class="d-flex justify-content-center">Search by name</h3>
                 <div class="d-flex justify-content-center">
-                    <input name="product", type="text">
+                    <input name="product", type="text" value="{{search}}">
                 </div>
             </div>
 
@@ -32,19 +32,17 @@
                 <h3 class="d-flex justify-content-center">Choose tags</h3>
                 <div class="d-flex justify-content-center">
                     {{#if tag_list}}
-                    {{#each tags}}
-                    
-                    <div class="form-check me-5 checkbox-lg">
-                        <h3><input class="form-check-input" name="tag" checked {{#ifIn tag tag}}checked{{/ifIn}}type="checkbox" value="{{tag}}">{{tag}}</j3>
-                    </div>
-                    {{/each}}
+                        {{#each tags}}
+                            <div class="form-check me-5 checkbox-lg">
+                                <h3><input class="form-check-input" name="tag" {{#ifIn tag ../tag_list }} checked {{/ifIn}}type="checkbox" value="{{tag}}">{{tag}}</j3>
+                            </div>
+                        {{/each}}
                     {{else}}
-                    {{#each tags}}
-                    
-                    <div class="form-check me-5 checkbox-lg">
-                        <h3><input class="form-check-input" name="tag" type="checkbox" value="{{tag}}">{{tag}}</j3>
-                    </div>
-                    {{/each}}
+                        {{#each tags}}
+                            <div class="form-check me-5 checkbox-lg">
+                                <h3><input class="form-check-input" name="tag" type="checkbox" value="{{tag}}">{{tag}}</j3>
+                            </div>
+                        {{/each}}
                     {{/if}}
                 </div>
             </div>

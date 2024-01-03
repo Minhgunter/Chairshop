@@ -5,9 +5,12 @@ const user=new schema(
   {
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
+    admin: Boolean,
     dateofcreation: {type: Date, default: Date.now},
     email: {type: String, required: true, unique: true},
-    full_name: {type: String, default: ''},
+    country: String,
+    first_name: String,
+    last_name: String,
     address: {type: String, default: ''},
     contact: {type: String, default: ''},
     phone: {type: String, default: ''},

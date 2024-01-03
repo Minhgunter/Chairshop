@@ -14,4 +14,6 @@ router.get('/:slug', re.details)
 
 router.get('/:slug/order', ensureAuthenticated, re.order_page)
 
+router.post('/:slug/order', ensureAuthenticated, re.order)
+
 module.exports = router;

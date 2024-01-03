@@ -1,0 +1,69 @@
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>Cart</h1>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="untree_co-section before-footer-section">
+    <div class="container">
+        <div class="row mb-5">
+                <div class="site-blocks-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="product-image">Image</th>
+                                <th class="product-name">Product</th>
+                                <th class="product-price">Price</th>
+                                <th class="product-quantity">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each products}}
+                                <form class="col-md-12" method="post">
+                                <tr>
+                                    <td class="product-thumbnail">
+                                        <img src="/images/{{product_info.image}}" alt="Image" class="img-fluid">
+                                    </td>
+                                    <td class="product-name">
+                                        <h2>{{product_info.product_name}}</h2>
+                                    </td>
+                                    <td>${{product_info.product_price}}</td>
+                                    <td>
+                                        <div class="number-input">
+                                            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" type="button" id="edit" class="minus"></button>
+                                            <input class="quantity" min=0 name="quantity" value={{quantity}} type="number">
+                                            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" type="button" id="edit" class="plus"></button>
+                                        </div>
+                                        <script>
+                                            $(function () {
+                                                $("#edit").click(function (e) {
+                                                    e.preventDefault();
+                                                });
+                                            });
+                                        </script>
+                                    </td>
+                                    <td>                                      
+                                        <button type="submit" name="edit" value="Edit" class="btn btn-primary mb-2">Edit</button>
+                                    </td>
+                                    <td>                                      
+                                        <button type="submit" name="edit" value="Delete" class="btn btn-primary mb-2">X</button>
+                                    </td>
+                                </tr>
+                                </form>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                
+        </div>
+    </div>
+</div>
