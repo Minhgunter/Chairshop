@@ -1,12 +1,13 @@
 const Cart=require('../models/cart_model')
 const Product=require('../models/product_model')
 const Coupon=require('../models/coupon_model')
+const Bill=require('../models/bill_model')
 
 module.exports.cart=async(req, res, next)=>{
     const user=req.user.username;
     const cart=await Cart.findOne({customer: user}, {}).populate('products.product_info').populate('coupon');
     
-    res.render('cart/index', {products: cart.products, sub_total: cart.sub_total, total_price: cart.total_price, coupon: cart.coupon})
+    res.render('cart/index', {products: cart.products, sub_total: cart.sub_total, total_price: cart.total_price, coupon: cart.coupon, user: req.user})
 }
 
 module.exports.edit_page=async(req, res, next)=>{
@@ -17,7 +18,7 @@ module.exports.edit_page=async(req, res, next)=>{
     const product_id=item._id;
 
     const cart=await Cart.findOne({customer: user}, {products: {$elemMatch: {product_info: product_id}}}).populate('products.product_info');
-        res.render('cart/edit', {products: cart.products});
+        res.render('cart/edit', {products: cart.products, user: req.user});
 }
 
 module.exports.edit=async(req, res, next)=>{
@@ -134,9 +135,115 @@ module.exports.checkout=async(req, res, next)=>{
 
     const cart=await Cart.findOne({customer: user}, {}).populate('products.product_info').populate('coupon');
 
-    return res.render('checkout/index', {phone: phone, email: email, coupon: cart.coupon, products: cart.products, first_name: first_name, last_name: last_name, country: country, address: address, sub_total: cart.sub_total, total_price: cart.total_price})
+    return res.render('checkout/index', {phone: phone, email: email, coupon: cart.coupon, products: cart.products, first_name: first_name, last_name: last_name, country: country, address: address, sub_total: cart.sub_total, total_price: cart.total_price, user: req.user})
 }
 
 module.exports.buy=async(req, res, next)=>{
+    const username=req.user.username;
 
+    if(!req.body.send_to){
+        const country=req.body.country;
+        const first_name=req.body.first_name;
+        const last_name=req.body.last_name;
+        const company=req.body.company;
+        const address=req.body.address;
+        const apartment= req.body.apartment;
+        const state_county=req.body.state_county;
+        const postal_zip=req.body.postal_zip;
+        const email=req.body.email;
+        const phone=req.body.phone;
+
+        if (!first_name || !last_name || !country || !address || !state_county || !postal_zip || !phone || !email){
+            req.flash('error', 'Some information is missing!')
+            return res.redirect('/checkout');
+        }
+
+        const cart=await Cart.findOne({customer: username}).populate('products.product_info');
+        const total_price=cart.total_price;
+        const date = new Date().toLocaleDateString();
+
+        const bill=new Bill({
+            username: username,
+            first_name: first_name,
+            last_name: last_name,
+            country: country,
+            address: address,
+            company: company,
+            apartment: apartment,
+            postal: postal_zip,
+            email: email,
+            phone: phone,
+            total_price: total_price,
+            shopping_date: date,
+            state_county: state_county
+        })
+
+        
+        for (var i=0; i<cart.products.length; i++){
+            bill.products.push({product_info: cart.products[i].product_info.product_name, quantity: cart.products[i].quantity, price: cart.products[i].product_info.product_price});
+        }
+        cart.products=[];
+        cart.sub_total=0;
+        cart.total_price=0;
+        cart.coupon=undefined;
+
+        cart.save();
+        bill.save();
+        return res.redirect('/thanks');
+    }
+    
+
+    else{
+        const country=req.body.foreign_country;
+        const first_name=req.body.foreign_first_name;
+        const last_name=req.body.foreign_last_name;
+        const company=req.body.foreign_company;
+        const address=req.body.foreign_address;
+        const apartment= req.body.foreign_apartment;
+        const state_county=req.body.foreign_state_county;
+        const postal_zip=req.body.foreign_postal_zip;
+        const email=req.body.foreign_email;
+        const phone=req.body.foreign_phone;
+
+        if (!first_name || !last_name || !country || !address || !state_county || !postal_zip || !phone || !email){
+            req.flash('error', 'Some information is missing!')
+            return res.redirect('/checkout');
+        }
+
+        const date = new Date().toLocaleDateString();
+
+        const cart=await Cart.findOne({customer: username}).populate('products.product_info');
+        const total_price=cart.total_price;
+
+        const bill=new Bill({
+            username: username,
+            first_name: first_name,
+            last_name: last_name,
+            address: address,
+            company: company,
+            apartment: apartment,
+            postal: postal_zip,
+            email: email,
+            phone: phone,
+            total_price: total_price,
+            shopping_date: date,
+            state_county: state_county
+        })
+
+        for (var i=0; i<cart.products.length; i++){
+            bill.products.push({product_info: cart.products[i].product_info.product_name, quantity: cart.products[i].quantity, price: cart.products[i].product_info.product_price});
+        }
+        cart.products=[];
+        cart.sub_total=0;
+        cart.total_price=0;
+        cart.coupon=undefined;
+
+        cart.save();
+        bill.save();
+        return res.redirect('/thanks');
+    }
+}
+
+module.exports.bill=async(req, res, next)=>{
+    const bill=await Bill.find({})
 }

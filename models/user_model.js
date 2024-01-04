@@ -9,6 +9,7 @@ const user=new schema(
     dateofcreation: {type: Date, default: Date.now},
     email: {type: String, required: true, unique: true},
     country: String,
+    state_couunty: String,
     first_name: String,
     last_name: String,
     address: {type: String, default: ''},

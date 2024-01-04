@@ -9,7 +9,7 @@ module.exports.index_register=function(req, res, next) {
 };
 
 module.exports.register=async(req, res)=>{
-        const {email, username, password, password2}=req.body;
+        const {email, username, password, password2, admin}=req.body;
 
         if (!email||!username||!password||!password2){
                 req.flash('message', 'Please fill all the empty area!')
@@ -39,30 +39,61 @@ module.exports.register=async(req, res)=>{
                         return res.redirect('/register');
                 }
         })
-        const newUser=new User({
-                email: email,
-                username: username,
-                password: password
-        });
+        if (admin){
+                const newUser=new User({
+                        email: email,
+                        username: username,
+                        password: password,
+                        admin: true
+                });
 
-        bcrypt.genSalt(10, (err, salt)=>{
-                bcrypt.hash(newUser.password, salt, (err, hash)=>{
-                        if (err){
-                                req.flash('message', "Failed to encrypt!")
-                                return res.redirect('/register');
-                        }
+                bcrypt.genSalt(10, (err, salt)=>{
+                        bcrypt.hash(newUser.password, salt, (err, hash)=>{
+                                if (err){
+                                        req.flash('message', "Failed to encrypt!")
+                                        return res.redirect('/register');
+                                }
 
-                        newUser.password=hash;
+                                newUser.password=hash;
 
-                        newUser.save().then(user=>{
-                                const newCart=new Cart({
-                                        customer: newUser.username
-                                });
-                                newCart.save();
-                                return res.redirect('/reg_notif');
-                        }).catch(err=>console.log(err));
+                                newUser.save().then(user=>{
+                                        const newCart=new Cart({
+                                                customer: newUser.username
+                                        });
+                                        newCart.save();
+                                        return res.redirect('/reg_notif');
+                                }).catch(err=>console.log(err));
+                        })
                 })
-        })
+        }
+
+        else{
+                const newUser=new User({
+                        email: email,
+                        username: username,
+                        password: password,
+                        admin: false
+                });
+
+                bcrypt.genSalt(10, (err, salt)=>{
+                        bcrypt.hash(newUser.password, salt, (err, hash)=>{
+                                if (err){
+                                        req.flash('message', "Failed to encrypt!")
+                                        return res.redirect('/register');
+                                }
+
+                                newUser.password=hash;
+
+                                newUser.save().then(user=>{
+                                        const newCart=new Cart({
+                                                customer: newUser.username
+                                        });
+                                        newCart.save();
+                                        return res.redirect('/reg_notif');
+                                }).catch(err=>console.log(err));
+                        })
+                })
+        }
 }
 
 

@@ -8,7 +8,7 @@ module.exports.home=async(req, res, next)=>
     try{
         const results=await Product.find({}, {}).limit(3).sort({updateat: -1});
         
-        return res.render('home/index', {products: results});
+        return res.render('home/index', {products: results, user: req.user});
     }
     catch(error){
         console.log(error);
@@ -22,7 +22,7 @@ module.exports.shop=async(req, res, next)=>
         const company=await Company.find({}, {});
         const results=await Product.find({}, {});
         
-        return res.render('shop/index', {products: results, tags: tags, company: company});
+        return res.render('shop/index', {products: results, tags: tags, company: company, user: req.user});
     }
     catch(error){
         console.log(error);
@@ -44,23 +44,23 @@ module.exports.search=async(req, res, next)=>
         const tag_list=await Tag.find({tag: tag}, 'tag')
         if (tag!=undefined && company_found!=null){
             const products=await Product.find({product_name: { $regex: search, $options: "i" }, tags: tag, company: company_found._id})
-            return res.render('shop/index', {search: search, products: products, tags: tags, company: company, tag_list: tag, selected_company: selected_company});
+            return res.render('shop/index', {search: search, products: products, tags: tags, company: company, tag_list: tag, selected_company: selected_company, user: req.user});
         }
 
         if (company_found==null && tag!=undefined){
             const products=await Product.find({product_name: { $regex: search, $options: "i" }, tags: tag});  
-            return res.render('shop/index', {search: search, products: products, tags: tags, company: company, tag_list: tag, selected_company: selected_company});
+            return res.render('shop/index', {search: search, products: products, tags: tags, company: company, tag_list: tag, selected_company: selected_company, user: req.user});
         }
 
         if (tag==undefined && company_found!=null){
             const products=await Product.find({product_name: { $regex: search, $options: "i" }, company: company_found._id});
-            return res.render('shop/index', {search: search, products: products, tags: tags, company: company, tag_list: tag, selected_company: selected_company});
+            return res.render('shop/index', {search: search, products: products, tags: tags, company: company, tag_list: tag, selected_company: selected_company, user: req.user});
         }
 
         if (tag==undefined && company_found==null){
             const products=await Product.find({product_name: { $regex: search, $options: "i" }});
             
-            return res.render('shop/index', {search: search, products: products, tags: tags, company: company, tag_list: tag, selected_company: selected_company});
+            return res.render('shop/index', {search: search, products: products, tags: tags, company: company, tag_list: tag, selected_company: selected_company, user: req.user});
         }
     }
     catch(error){
@@ -84,7 +84,7 @@ module.exports.details=async(req, res, next)=>
         const image=found.image;
         const tags=found.tags;
 
-        return res.render('shop/detail', {product_name: product_name, product_price: product_price, description: description, image: image, stock: stock, tags: tags, slug: slug});
+        return res.render('shop/detail', {product_name: product_name, product_price: product_price, description: description, image: image, stock: stock, tags: tags, slug: slug, user: req.user});
     }
     catch(error){
         return console.log(error);
@@ -98,7 +98,7 @@ module.exports.order_page=async(req, res, next)=>{
         const product_name=found.product_name;
         const product_price=found.product_price;
 
-        return res.render('shop/order', {product_name: product_name, product_price: product_price})
+        return res.render('shop/order', {product_name: product_name, product_price: product_price, user: req.user})
     }
     catch(error){
         return console.log(error)

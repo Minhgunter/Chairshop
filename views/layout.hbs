@@ -53,23 +53,23 @@
                     menuItem[0].className="nav-item active"
                 }
 
-                if (current==="/shop"){
+                if (current.includes("/shop")){
                     menuItem[1].className="nav-item active"
                 }
 
-                if (current==="/about"){
+                if (current.includes("/about")){
                     menuItem[2].className="nav-item active"
                 }
 
-                if (current==="/services"){
+                if (current.includes("/services")){
                     menuItem[3].className="nav-item active"
                 }
 
-                if (current==="/blog"){
+                if (current.includes("/blog")){
                     menuItem[4].className="nav-item active"
                 }
 
-                if (current==="/contact"){
+                if (current.includes("/contact")){
                     menuItem[5].className="nav-item active"
                 }
             </script>
@@ -77,6 +77,9 @@
             <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                 <li><a class="nav-link" href="/account/{{username}}"><img src="/images/user.svg"></a></li>
                 <li><a class="nav-link" href="/cart"><img src="/images/cart.svg"></a></li>
+                {{#if user.admin}}
+                    <li><a class="nav-link" href="/admin">Admin</a></li>
+                {{/if}}
             </ul>
         </div>
     </div>
@@ -153,14 +156,6 @@
                             <li><a href="#">Our team</a></li>
                             <li><a href="#">Leadership</a></li>
                             <li><a href="#">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-6 col-sm-6 col-md-3">
-                        <ul class="list-unstyled">
-                            <li><a href="#">Nordic Chair</a></li>
-                            <li><a href="#">Kruzo Aero</a></li>
-                            <li><a href="#">Ergonomic Chair</a></li>
                         </ul>
                     </div>
                 </div>

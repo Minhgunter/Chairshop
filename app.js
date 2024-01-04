@@ -32,6 +32,7 @@ const accountRouter = require('./components/account');
 const adminRouter = require('./components/admin');
 const regnotifRouter= require('./components/reg_notif');
 const welcomeRouter= require('./components/welcome');
+const billRouter= require('./components/bill');
 
 const app = express();
 
@@ -90,6 +91,7 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/reg_notif', regnotifRouter);
 app.use('/welcome', welcomeRouter);
+app.use('/bill', billRouter);
 
 
 // catch 404 and forward to error handler
