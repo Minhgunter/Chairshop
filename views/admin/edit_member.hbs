@@ -1,0 +1,55 @@
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>Member Management</h1>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-5 mt-5">
+        <h3 class="d-flex justify-content-center">Edit Member</h3>
+        <div class="site-blocks-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="image">Image</th>
+                        <th class="name">Name</th>
+                        <th class="position">Position</th>
+                        <th class="info">Information</th>
+                    </tr>
+                </thead>
+                <form method="post" enctype="multipart/form-data">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="file" name="image" id="image">
+                            </td>
+                            <td>
+                                <input type="text" name="name" value="{{name}}">
+                            </td>
+                            <td>
+                                <input type="text" name="position" value="{{position}}">
+                            </td>
+                            <td>
+                                <input type="text" name="information" value="{{information}}">
+                            </td>
+                            <td>
+                                <div class="col-md-12 text-center pt-5">
+                                    <p><button type="submit" class="btn btn-sm btn-outline-black">Edit</button></p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </form>
+            </table>
+        </div>
+    </div>
+</div>

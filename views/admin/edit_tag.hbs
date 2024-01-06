@@ -1,0 +1,48 @@
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>Product Management</h1>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+      <div class="row mb-5 mt-5">
+        <h3 class="d-flex justify-content-center">Edit Tag</h3>
+            <div class="site-blocks-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="tag">Tag</th>
+                        </tr>
+                    </thead>
+                    <form method="post">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" name="tag" value="{{tag}}" id="tag">
+                                </td>
+                                <td>
+                                    <div class="col-md-12 text-center pt-5">
+                                        <p><button type="submit" class="btn btn-sm btn-outline-black">Edit</button></p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </form>
+                </table>
+            </div>
+            {{#if error}}
+                <h4 class="alert alert-danger mt-4">{{error}}</h4>
+            {{/if}}
+        </div>
+
+
+    </div>

@@ -1,0 +1,75 @@
+<div class="hero">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-5">
+                    <div class="intro-excerpt">
+                        <h1>User Management</h1>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h3 class="d-flex justify-content-center mt-3">All Users</h3>
+    {{#each users}}
+        <div class="d-flex justify-content-center row mt-3 mt-3">
+            <div class="card" style="width: 25rem;">               
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h2 class="mt-2 d-flex justify-content-center">{{username}}<h2>
+                    </div>
+                    <div class="mb-3" style="font-size: 24px">
+                        <mark><strong>First Name: </strong></mark>{{first_name}}
+                    </div>
+                    <div class="mb-3" style="font-size: 24px">
+                        <mark><strong>Last Name: </strong></mark>{{last_name}}
+                    </div>
+                    <div class="mb-3" style="font-size: 24px">
+                        <mark><strong>Country: </strong></mark>{{country}}
+                    </div>
+                    <div class="mb-3" style="font-size: 24px">
+                        <mark><strong>State / County / Province: </strong></mark>{{state_county}}
+                    </div>
+                    <div class="mb-3" style="font-size: 24px">
+                        <mark><strong>Address: </strong></mark>{{address}}
+                    </div>
+                    <div class="mb-3" style="font-size: 24px">
+                        <mark><strong>Phone: </strong></mark>{{phone}}
+                    </div>
+                    <div class="mb-3" style="font-size: 24px">
+                        <mark><strong>Email: </strong></mark>{{email}}
+                    </div>
+                    <div class="mb-3" style="font-size: 24px">
+                        <mark><strong>Gender: </strong></mark>{{gender}}
+                    </div>
+                    <div class="mb-3" style="font-size: 24px">
+                        <mark><strong>Date of Birth: </strong></mark>{{dateofbirth}}
+                    </div>
+                    <div class="mb-3" style="font-size: 24px">
+                        <mark><strong>Contact: </strong></mark>{{contact}}
+                    </div>
+                    <div class="mb-3">
+                        <div class="mt-2 d-flex justify-content-center">
+                            <a href="/admin/users/{{username}}/bill" class="btn btn-sm btn-outline-black d-flex justify-content-center">View Bills!</a>
+                            <form method="post">
+                                <button type="submit" name="delete_user" value="{{username}}" class="btn btn-sm btn-outline-black d-flex justify-content-center">Delete User!</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+
+    {{#if message}}
+        <h4 class="alert alert-success mt-4">{{message}}</h4>
+    {{/if}}
+
+    {{#if error}}
+        <h4 class="alert alert-danger mt-4">{{error}}</h4>
+    {{/if}}
+</div>

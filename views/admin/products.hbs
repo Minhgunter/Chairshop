@@ -1,0 +1,197 @@
+	<div class="hero">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-5">
+                    <div class="intro-excerpt">
+                        <h1>Product Management</h1>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+      <form method="post">
+        <div class="row mb-5 mt-5">
+        <h3 class="d-flex justify-content-center">All Products</h3>
+          <div class="site-blocks-table">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="product-thumbnail">Image</th>
+                  <th class="product-name">Product Name</th>
+                  <th class="product-price">Price</th>
+                  <th class="product-stock">Stock</th>
+                  <th class="product-description">Description</th>
+                  <th class="products-tags">Tags</th>
+                  <th class="company">Created by</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each products}}
+                  <tr>
+                    <td class="product-thumbnail">
+                      <img src="/images/{{image}}" alt="Image" class="img-fluid">
+                    </td>
+                    <td class="product-name">
+                      <h2>{{product_name}}</h2>
+                    </td>
+                    <td>${{product_price}}</td>
+                    <td>
+                      {{stock}}
+                    </td>
+                    <td>{{description}}</td>
+                    <td>
+                      {{#each tags}}
+                        <ins>{{this}} </ins>
+                        {{/each}}
+                    </td>
+                    <td>
+                      {{company.company}}
+                    </td>
+                    <td>
+                      <a href="/admin/products/{{slug}}/edit" class="btn btn-black btn-sm">
+                        Edit
+                      </a>
+                    </td>
+                    <td>
+                      <button method="sudmit" name="delete_product" value="{{_id}}" class="btn btn-black btn-sm">
+                        X
+                      </button>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-12 text-center pt-5">
+            <p><a href="/admin/products/new" class="btn btn-sm btn-outline-black">Add New Product</a></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <h3 class="d-flex justify-content-center">Tags</h3>
+          <div class="site-blocks-table">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="tag">Tag</th>
+                </tr>
+                <tbody>
+                  {{#each tags}}
+                    <tr>
+                      <td>
+                        <h2>{{tag}}</h2>
+                      </td>
+                      <td>
+                        <a href="/admin/tag/{{tag}}/edit" class="btn btn-black btn-sm">
+                          Edit
+                        </a>
+                      </td>
+                      <td>
+                        <button method="sudmit" name="delete_tag" value="{{tag}}" class="btn btn-black btn-sm">
+                          X
+                        </button>
+                      </td>
+                    </tr>
+                  {{/each}}
+              </thead>
+            </table>
+          </div>
+          <div class="col-md-12 text-center pt-5">
+            <p><a href="/admin/tag/new" class="btn btn-sm btn-outline-black">Add New Tag</a></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <h3 class="d-flex justify-content-center">Companies</h3>
+          <div class="site-blocks-table">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="company">Company</th>
+                  <th class="slug">Slug</th>
+                </tr>
+                <tbody>
+                  {{#each companies}}
+                    <tr>
+                      <td>
+                        <h2>{{company}}</h2>
+                      </td>
+                      <td>
+                        <h2>{{company_slug}}</h2>
+                      </td>
+                      <td>
+                        <a href="/admin/company/{{company_slug}}/edit" class="btn btn-black btn-sm">
+                          Edit
+                        </a>
+                      </td>
+                      <td>
+                        <button method="sudmit" name="delete_company" value="{{_id}}" class="btn btn-black btn-sm">
+                          X
+                        </button>
+                      </td>
+                    </tr>
+                  {{/each}}
+              </thead>
+            </table>
+          </div>
+          <div class="col-md-12 text-center pt-5">
+            <p><a href="/admin/company/new" class="btn btn-sm btn-outline-black">Add New Company</a></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <h3 class="d-flex justify-content-center">Coupon</h3>
+          <div class="site-blocks-table">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="coupon">Coupon Code</th>
+                  <th class="discount">Discount</th>
+                </tr>
+                <tbody>
+                  {{#each coupons}}
+                    <tr>
+                      <td>
+                        <h2>{{coupon_code}}</h2>
+                      </td>
+                      <td>
+                        <h2>{{discount}}</h2>
+                      </td>
+                      <td>
+                        <a href="/admin/coupon/{{coupon_code}}/edit" class="btn btn-black btn-sm">
+                          Edit
+                        </a>
+                      </td>
+                      <td>
+                        <button method="sudmit" name="delete_coupon" value="{{_id}}" class="btn btn-black btn-sm">
+                          X
+                        </button>
+                      </td>
+                    </tr>
+                  {{/each}}
+              </thead>
+            </table>
+          </div>
+          <div class="col-md-12 text-center pt-5">
+            <p><a href="/admin/coupon/new" class="btn btn-sm btn-outline-black">Add New Coupon</a></p>
+          </div>
+        </div>
+        <div class="container mt-4 d-flex justify-content-center">
+        {{#if message}}
+          <div style="width: 25rem;">          
+              <h4 class="alert alert-success mt-4">{{message}}</h4>
+          </div>
+        {{/if}}
+        {{#if error}}
+          <div style="width: 25rem;">   
+            <h4 class="alert alert-danger mt-4">{{error}}</h4>
+          </div>
+        {{/if}}
+        </div>
+      </form>
+    </div>

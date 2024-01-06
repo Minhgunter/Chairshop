@@ -1,0 +1,72 @@
+<div class="untree_co-section before-footer-section">
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="row mb-4">
+                            <h1 class="d-flex justify-content-center">All Bill</h1>
+                            {{#each bill}}
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <h2 class="mt-2 d-flex justify-content-center">{{shopping_date}}<h2>
+                                </div>
+                                <div class="mb-3" style="font-size: 24px">
+                                    <mark><strong>First Name: </strong></mark>{{first_name}}
+                                </div>
+                                <div class="mb-3" style="font-size: 24px">
+                                    <mark><strong>Last Name: </strong></mark>{{last_name}}
+                                </div>
+                                <div class="mb-3" style="font-size: 24px">
+                                    <mark><strong>Country: </strong></mark>{{country}}
+                                </div>
+                                <div class="mb-3" style="font-size: 24px">
+                                    <mark><strong>State / County / Province / City: </strong></mark> {{state_county}}
+                                </div>
+                                <div class="mb-3" style="font-size: 24px">
+                                    <mark><strong>Address: </strong></mark> {{address}}
+                                </div>
+                                <div class="mb-3" style="font-size: 24px">
+                                    <mark><strong>Email: </strong></mark> {{email}}
+                                </div>
+                                <div class="mb-3" style="font-size: 24px">
+                                    <mark><strong>Phone Number: </strong></mark> {{phone}}
+                                </div>
+                                <div class="mb-3" style="font-size: 24px">
+                                    <mark><strong>Postal / Zip: </strong></mark> {{postal}}
+                                </div>
+                                {{#if company}}
+                                    <div class="mb-3" style="font-size: 24px">
+                                        <mark><strong>Company: </strong></mark> {{company}}
+                                    </div>
+                                {{/if}}
+                                {{#if apartment}}
+                                    <div class="mb-3" style="font-size: 24px">
+                                        <mark><strong>Apartment: </strong></mark> {{apartment}}
+                                    </div>
+                                {{/if}}
+                                    <table class="table site-block-order-table mb-5">
+								<thead>
+									<th>Product</th>
+                                    <th>Quantity</th>
+									<th>Price</th>
+								</thead>
+								<tbody>
+									{{#each products}}
+										<tr>
+										<td>{{product_info}}</td>
+                                        <td>{{quantity}}</td>
+										<td>${{price}}</td>
+										</tr>
+									{{/each}}
+										<tr>
+										<td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+                                        <td></td>
+										<td class="text-black font-weight-bold"><strong>${{total_price}}</strong></td>
+										</tr>
+								</tbody>
+								</table>
+
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>

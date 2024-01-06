@@ -1,12 +1,11 @@
 const express = require('express');
+const Services=require('../../models/services_model')
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('about/index', { title: 'Express2', subTitle: '21KTPM' });
+router.get('/', async(req, res, next)=>{
+  const services=await Services.find({})
+  res.render('about/index', { user: req.user, services: services});
 });
 
-router.get('/:id', function(req, res, next) {
-  res.render('about/index');
-});
 module.exports = router;

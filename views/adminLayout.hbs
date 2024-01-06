@@ -23,7 +23,7 @@
 <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
     <div class="container">
-        <a class="navbar-brand" href="/">Stelling Chairs<span>.</span></a>
+        <a class="navbar-brand" href="/admin">Stelling Chairs<span>.</span></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,42 +31,45 @@
 
         <div class="collapse navbar-collapse" id="navbarsFurni">
             <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/shop">Shop</a></li>
-                <li class="nav-item"><a class="nav-link" href="/about">About us</a></li>
-                <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="/contact">Contact us</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/products">Products</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/users">User</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/about_us">About us</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/blog">Blog</a></li>
             </ul>
 
             <script type="text/javascript">
                 const current=window.location.pathname;
                 const menuItem=document.querySelectorAll('li');
-                if (current==="/"){
+                if (current==="/admin"){
                     menuItem[0].className="nav-item active"
                 }
 
-                if (current.contains("/shop")){
+                if (current.includes("/admin/products")){
                     menuItem[1].className="nav-item active"
                 }
 
-                if (current==="/about"){
+                if (current.includes("/admin/users")){
                     menuItem[2].className="nav-item active"
                 }
 
-                if (current==="/services"){
+                if (current.includes("/admin/about_us")){
                     menuItem[3].className="nav-item active"
                 }
 
-                if (current==="/blog"){
+                if (current.includes("/admin/contact")){
                     menuItem[4].className="nav-item active"
                 }
 
-                if (current==="/contact"){
+                if (current.includes("/admin/blog")){
                     menuItem[5].className="nav-item active"
                 }
             </script>
 
+            <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                <li><a class="nav-link" href="/">Main Website</a></li>
+            </ul>
         </div>
     </div>
 

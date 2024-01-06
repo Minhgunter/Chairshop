@@ -1,0 +1,71 @@
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>Services</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="why_choose_us">
+    <div class="container">
+        <div class="row my-5">
+            <h2>Why Choose Us</h2>
+            <div class="col-6 col-md-6 col-lg-3 mb-4">
+                {{#each services}}
+                <div class="feature">
+                    <div class="icon">
+                        <image width="49" height="30" src="/images/{{icon}}" alt="Image" class="imf-fluid">
+                    </div>
+                    <h3>{{benefit}}</h3>
+                    <p>{{description}}</p>
+                    <div class="d-flex justifly-content-between">
+                        <p><a href="/admin/service/{{_id}}/edit" class="btn btn-sm btn-outline-black">Edit Service</a></p>
+                        <form method="post">
+                            <p><button name="delete_service" value="{{_id}}" class="btn btn-sm btn-outline-black">Delete</button></p>
+                        </form>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            <div class="col-md-12 text-center pt-5">
+                <p><a href="/admin/service/new" class="btn btn-sm btn-outline-black">Add Service</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="team">
+    <div class="container">
+
+        <div class="row mb-5">
+            <div class="col-lg-5 mx-auto text-center">
+                <h2 class="section-title">Our Team</h2>
+            </div>
+        </div>
+
+        <div class="row">
+
+            {{#each member}}
+            <div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
+                <img alt="" src="/images/person_1.jpg" class="img-fluid mb-5">
+                <h3><u>{{name}}</u></h3>
+                <span class="d-block position mb-4">{{position}}</span>
+                <p>{{information}}</p>
+                <div class="d-flex justifly-content-between">
+                        <p><a href="/admin/member/{{_id}}/edit" class="btn btn-sm btn-outline-black">Edit Service</a></p>
+                        <form method="post">
+                            <p><button name="delete_service" value="{{_id}}" class="btn btn-sm btn-outline-black">Delete</button></p>
+                        </form>
+                    </div>
+            </div> 
+            {{/each}}
+
+            <div class="col-md-12 text-center pt-5">
+                <p><a href="/admin/member/new" class="btn btn-sm btn-outline-black">Add Member</a></p>
+            </div>
+        </div>
+    </div>
+</div>
