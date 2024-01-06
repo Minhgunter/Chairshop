@@ -3,17 +3,6 @@ const Tag=require('../models/tag_model');
 const Cart=require('../models/cart_model')
 const Company=require('../models/company_model')
 
-module.exports.home=async(req, res, next)=> 
-{
-    try{
-        const results=await Product.find({}, {}).limit(3).sort({updateat: -1});
-        
-        return res.render('home/index', {products: results, user: req.user});
-    }
-    catch(error){
-        console.log(error);
-    }
-};
 
 module.exports.shop=async(req, res, next)=> 
 {
