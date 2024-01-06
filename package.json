@@ -2,6 +2,7 @@
   "name": "hello-express",
   "version": "0.0.0",
   "private": true,
+  "engines": {"node": ">=18.16.0"},
   "scripts": {
     "start": "nodemon --inspect ./bin/www",
     "//first_comment": "Change to node ./bin/www when run in Glitch"
